@@ -5,7 +5,7 @@
 # https://creativecommons.org/publicdomain/zero/1.0/
 
 install:
-	cp genpwdsh.sh /usr/local/bin/genpwdsh
+	cp genpwdsh/genpwdsh.sh /usr/local/bin/genpwdsh
 	chmod a+rx /usr/local/bin/genpwdsh
 
 uninstall:
