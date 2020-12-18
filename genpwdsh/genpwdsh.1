@@ -1,0 +1,21 @@
+.TH GENPWDSH 1
+.SH NAME
+GenPwdSh \- Bash script for generating passwords.
+.SH SYNOPSIS
+.B genpwdsh
+[length] [method]
+.SH DESCRIPTION
+Generate Password (in) Shell: Bash script for generating passwords, released to the public domain.
+.SH METHOD
+.PP
+.BR \-sha256sum " "
+generates password using sha256sum.
+.PP
+.BR \-urandom " "
+generates password using /dev/urandom.
+.PP
+.BR \-openssl " "
+generates password using OpenSSL.
+.PP
+.BR \-gpg " "
+generates password using GnuPG (option '--armor 2')
