@@ -27,9 +27,12 @@ if [ $length -lt 1 ]
 then
   echo 1>&2 "$0: Length must be greater than 0."
 else
-  if [ $method = -sha256sum ]
+  if [ $method = -sha256 ]
   then
-    date +%s | sha256sum | base64| head -c $length ; echo
+    date +%s | sha256sum | base64 | head -c $length ; echo
+  elif [ $method = -sha512 ]
+  then
+    date +%s | sha512sum | base64 | head -c $length ; echo
   elif [ $method = -urandom ]
   then
     < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-$length}; echo;
