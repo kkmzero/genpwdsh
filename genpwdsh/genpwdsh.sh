@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Bash script for generating passwords.
-# 2020, Ivan Kmeťo
+# 2020-2021, Ivan Kmeťo
 #
 # CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
 # https://creativecommons.org/publicdomain/zero/1.0/
 
 # Use: genpwdsh [length] [method]
-# Methods: -sha256sum | -urandom | -openssl | -gpg
+# Methods: -sha256 | -sha512 | -md5 | -random  | -urandom | -openssl | -gpg
 
 
 if [ $# -lt 2 ]; then
@@ -33,6 +33,12 @@ else
   elif [ $method = -sha512 ]
   then
     date +%s | sha512sum | base64 | head -c $length ; echo
+  elif [ $method = -md5 ]
+  then
+    date +%s | md5sum -z | head -c $length ; echo;
+  elif [ $method = -random ]
+  then
+    < /dev/random tr -dc _A-Z-a-z-0-9 | head -c${1:-$length}; echo;
   elif [ $method = -urandom ]
   then
     < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-$length}; echo;
