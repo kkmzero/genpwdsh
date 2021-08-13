@@ -29,13 +29,13 @@ then
 else
   if [ $method = -sha256 ]
   then
-    date +%s | sha256sum | base64 | head -c $length ; echo
+    date +%s | sha256sum | base64 | head -c $length; echo
   elif [ $method = -sha512 ]
   then
-    date +%s | sha512sum | base64 | head -c $length ; echo
+    date +%s | sha512sum | base64 | head -c $length; echo
   elif [ $method = -md5 ]
   then
-    date +%s | md5sum -z | head -c $length ; echo;
+    date +%s | md5sum -z | head -c $length; echo;
   elif [ $method = -random ]
   then
     < /dev/random tr -dc _A-Z-a-z-0-9 | head -c${1:-$length}; echo;
@@ -44,10 +44,10 @@ else
     < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-$length}; echo;
   elif [ $method = -openssl ]
   then
-    openssl rand -base64 $length
+    openssl rand -base64 $length | head -c $length; echo;
   elif [ $method = -gpg ]
   then
-    gpg --gen-random --armor 2 $length
+    gpg --gen-random --armor 2 $length | head -c $length; echo;
   else
     echo 1>&2 "$0: Unknown method."
     exit 2
