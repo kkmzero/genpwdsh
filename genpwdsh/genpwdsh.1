@@ -1,3 +1,9 @@
+." Bash script for generating passwords.
+." 2020 - 2021, Ivan Kmeťo
+."
+." CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
+." https://creativecommons.org/publicdomain/zero/1.0/
+
 .TH GENPWDSH 1
 .SH NAME
 GenPwdSh \- Bash script for generating passwords.
@@ -8,11 +14,20 @@ GenPwdSh \- Bash script for generating passwords.
 Generate Password (in) Shell: Bash script for generating passwords, released to the public domain.
 .SH METHOD
 .PP
+.BR \-sha224 " "
+generates password using sha224sum.
+.PP
 .BR \-sha256 " "
 generates password using sha256sum.
 .PP
+.BR \-sha384 " "
+generates password using sha384sum.
+.PP
 .BR \-sha512 " "
 generates password using sha512sum.
+.PP
+.BR \-b2 " "
+generates password using b2sum.
 .PP
 .BR \-md5 " "
 generates password using md5sum.
