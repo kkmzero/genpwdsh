@@ -7,7 +7,7 @@
 # https://creativecommons.org/publicdomain/zero/1.0/
 
 # Use: genpwdsh [length] [method]
-# Methods: -sha224 | -sha256 | -sha384 | -sha512 | -md5 | -random  | -urandom | -openssl | -gpg
+# Methods: -sha224 | -sha256 | -sha384 | -sha512 | -b2 | -md5 | -random  | -urandom | -openssl | -gpg
 
 
 if [ $# -lt 2 ]; then
@@ -39,6 +39,9 @@ else
   elif [ $method = -sha512 ]
   then
     date +%s | sha512sum | base64 | head -c $length; echo
+  elif [ $method = -b2 ]
+  then
+    date +%s | b2sum | base64 | head -c $length; echo
   elif [ $method = -md5 ]
   then
     date +%s | md5sum -z | head -c $length; echo;
