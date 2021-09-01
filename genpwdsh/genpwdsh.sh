@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Bash script for generating passwords.
-# 2020-2021, Ivan Kmeťo
+# 2020 - 2021, Ivan Kmeťo
 #
 # CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
 # https://creativecommons.org/publicdomain/zero/1.0/
 
 # Use: genpwdsh [length] [method]
-# Methods: -sha256 | -sha512 | -md5 | -random  | -urandom | -openssl | -gpg
+# Methods: -sha224 | -sha256 | -sha384 | -sha512 | -md5 | -random  | -urandom | -openssl | -gpg
 
 
 if [ $# -lt 2 ]; then
@@ -27,9 +27,15 @@ if [ $length -lt 1 ]
 then
   echo 1>&2 "$0: Length must be greater than 0."
 else
-  if [ $method = -sha256 ]
+  if [ $method = -sha224 ]
+  then
+    date +%s | sha224sum | base64 | head -c $length; echo
+  elif [ $method = -sha256 ]
   then
     date +%s | sha256sum | base64 | head -c $length; echo
+  elif [ $method = -sha384 ]
+  then
+    date +%s | sha384sum | base64 | head -c $length; echo
   elif [ $method = -sha512 ]
   then
     date +%s | sha512sum | base64 | head -c $length; echo
@@ -50,6 +56,7 @@ else
     gpg --gen-random --armor 2 $length | head -c $length; echo;
   else
     echo 1>&2 "$0: Unknown method."
+    echo 1>&2 "$0: Use: genpwdsh [length] [method]"
     exit 2
   fi
 fi
