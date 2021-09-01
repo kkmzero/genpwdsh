@@ -9,4 +9,4 @@ Use ```(sudo) make install``` to copy file *genpwdsh.sh* to */usr/local/bin/genp
 ```genpwdsh [length] [method]```
 
 **Length**: Length limit of desired password. Can not be less than or equal to 0.</br>
-**Method**: Specifies method of generating passwords: -sha256 | -sha512 | -md5 | -random | -urandom | -openssl | -gpg
+**Method**: Specifies method of generating passwords: -sha224 | -sha256 | -sha384 | -sha512 | -b2 | -md5 | -random | -urandom | -openssl | -gpg
