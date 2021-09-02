@@ -1,17 +1,25 @@
-." Bash script for generating passwords.
-." 2020 - 2021, Ivan Kmeťo
-."
-." CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
-." https://creativecommons.org/publicdomain/zero/1.0/
+.\" Bash script for generating passwords.
+.\" 2020 - 2021, Ivan Kmeťo
+.\"
+.\" CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
+.\" https://creativecommons.org/publicdomain/zero/1.0/
 
-.TH GENPWDSH 1
+.TH GENPWDSH "1" "September 2021" "Version 1.0.0" "User Commands"
 .SH NAME
 GenPwdSh \- Bash script for generating passwords.
 .SH SYNOPSIS
 .B genpwdsh
-[LENGTH] [METHOD]
+[\fI\,LENGTH\/\fR] [\fI\,METHOD\/\fR]
 .SH DESCRIPTION
 Generate Password (in) Shell: Bash script for generating passwords, released to the public domain.
+.PP
+.SS "Use following options for more information:"
+.TP
+\fB\-\-help\fR
+display help message and exit
+.TP
+\fB\-\-version\fR
+output version information and exit
 .SH METHOD
 .PP
 .BR \-sha224 " "
@@ -42,4 +50,6 @@ generates password using /dev/urandom.
 generates password using OpenSSL.
 .PP
 .BR \-gpg " "
-generates password using GnuPG (option '--armor 2')
+generates password using GnuPG (option '--armor 2').
+.SH AUTHOR
+Written by Ivan Kmeťo.
