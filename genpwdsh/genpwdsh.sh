@@ -18,15 +18,16 @@ fi
 
 if [ $1 = --help ]; then
   echo "Usage: genpwdsh [LENGTH] [METHOD]"
-  echo "Bash script for generating passwords.\n"
+  echo "Bash script for generating passwords."
+  echo
   echo "Available methods for generating passwords:"
   echo "-sha224 | -sha256 | -sha384 | -sha512 | -b2 | -md5 | -random | -urandom | -openssl | -gpg"
-  return
+  exit 0
 elif [ $1 = --version ]; then
   echo "GenPwdSh 1.0.0"
   echo "2020 - 2021, Ivan Kmeťo"
   echo "CC0 1.0 Universal (CC0 1.0) Public Domain Dedication"
-  return
+  exit 0
 fi
 
 if [ $# -lt 2 ]; then
