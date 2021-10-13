@@ -24,7 +24,7 @@ if [ $1 = --help ]; then
   echo "-sha224 | -sha256 | -sha384 | -sha512 | -b2 | -md5 | -random | -urandom | -openssl | -gpg"
   exit 0
 elif [ $1 = --version ]; then
-  echo "GenPwdSh 1.0.0"
+  echo "GenPwdSh 1.1.0"
   echo "2020 - 2021, Ivan Kmeťo"
   echo "CC0 1.0 Universal (CC0 1.0) Public Domain Dedication"
   exit 0
@@ -43,28 +43,31 @@ fi
 length=$1
 method=$2
 
+input="date +%s"
+
+
 if [ $length -lt 1 ]
 then
   echo 1>&2 "$0: Length must be greater than 0."
 else
   if [ $method = -sha224 ]
   then
-    date +%s | sha224sum | base64 | head -c $length; echo
+    $input | sha224sum | base64 | head -c $length; echo
   elif [ $method = -sha256 ]
   then
-    date +%s | sha256sum | base64 | head -c $length; echo
+    $input | sha256sum | base64 | head -c $length; echo
   elif [ $method = -sha384 ]
   then
-    date +%s | sha384sum | base64 | head -c $length; echo
+    $input | sha384sum | base64 | head -c $length; echo
   elif [ $method = -sha512 ]
   then
-    date +%s | sha512sum | base64 | head -c $length; echo
+    $input | sha512sum | base64 | head -c $length; echo
   elif [ $method = -b2 ]
   then
-    date +%s | b2sum | base64 | head -c $length; echo
+    $input | b2sum | base64 | head -c $length; echo
   elif [ $method = -md5 ]
   then
-    date +%s | md5sum -z | head -c $length; echo;
+    $input | md5sum -z | head -c $length; echo;
   elif [ $method = -random ]
   then
     < /dev/random tr -dc _A-Z-a-z-0-9 | head -c${1:-$length}; echo;
