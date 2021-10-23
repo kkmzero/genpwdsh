@@ -7,7 +7,7 @@
 # https://creativecommons.org/publicdomain/zero/1.0/
 
 # Usage: genpwdsh [LENGTH] [METHOD]
-# Methods: -sha224 | -sha256 | -sha384 | -sha512 | -b2 | -md5 | -random | -urandom | -openssl | -gpg
+# Methods: -sha224 | -sha256 | -sha384 | -sha512 | -b2 | -random | -urandom | -openssl | -gpg
 
 
 if [ $# = 0 ]; then
@@ -21,7 +21,7 @@ if [ $1 = --help ]; then
   echo "Bash script for generating passwords."
   echo
   echo "Available methods for generating passwords:"
-  echo "-sha224 | -sha256 | -sha384 | -sha512 | -b2 | -md5 | -random | -urandom | -openssl | -gpg"
+  echo "-sha224 | -sha256 | -sha384 | -sha512 | -b2 | -random | -urandom | -openssl | -gpg"
   exit 0
 elif [ $1 = --version ]; then
   echo "GenPwdSh 1.1.0"
@@ -43,7 +43,7 @@ fi
 length=$1
 method=$2
 
-input="date +%s"
+input="date +%N%M%S"
 
 
 if [ $length -lt 1 ]
@@ -65,9 +65,6 @@ else
   elif [ $method = -b2 ]
   then
     $input | b2sum | base64 | head -c $length; echo
-  elif [ $method = -md5 ]
-  then
-    $input | md5sum -z | head -c $length; echo;
   elif [ $method = -random ]
   then
     < /dev/random tr -dc _A-Z-a-z-0-9 | head -c${1:-$length}; echo;
