@@ -1,5 +1,5 @@
 # Bash script for generating passwords.
-# 2020 - 2021, Ivan Kmeťo
+# 2020 - 2022, Ivan Kmeťo
 #
 # CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
 # https://creativecommons.org/publicdomain/zero/1.0/
