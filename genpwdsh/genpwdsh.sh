@@ -1,54 +1,50 @@
 #!/bin/bash
 
 # Bash script for generating passwords.
-# 2020 - 2021, Ivan Kmeťo
+# 2020 - 2022, Ivan Kmeťo
 #
 # CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
 # https://creativecommons.org/publicdomain/zero/1.0/
 
-# Usage: genpwdsh [LENGTH] [METHOD]
+# Usage: genpwdsh [LENGTH] [METHOD] [INPUT]
 # Methods: -sha224 | -sha256 | -sha384 | -sha512 | -b2 | -random | -urandom | -openssl | -gpg
 
 
-if [ $# = 0 ]; then
-  echo 1>&2 "$0: Not enough arguments."
-  echo "Try 'genpwdsh --help' for more information."
-  exit 2
-fi
-
-if [ $1 = --help ]; then
-  echo "Usage: genpwdsh [LENGTH] [METHOD]"
-  echo "Bash script for generating passwords."
-  echo
-  echo "Available methods for generating passwords:"
-  echo "-sha224 | -sha256 | -sha384 | -sha512 | -b2 | -random | -urandom | -openssl | -gpg"
-  exit 0
-elif [ $1 = --version ]; then
-  echo "GenPwdSh 1.1.0"
-  echo "2020 - 2021, Ivan Kmeťo"
-  echo "CC0 1.0 Universal (CC0 1.0) Public Domain Dedication"
-  exit 0
-fi
-
-if [ $# -lt 2 ]; then
-  echo 1>&2 "$0: Not enough arguments."
-  echo "Try 'genpwdsh --help' for more information."
-  exit 2
-elif [ $# -gt 2 ]; then
-  echo 1>&2 "$0: Too many arguments."
-  echo "Try 'genpwdsh --help' for more information."
-  exit 2
-fi
-
 length=$1
 method=$2
+input=$3
 
-input="date +%N%M%S"
+
+if [ $# = 0 ]; then
+  length=8
+  method=-b2
+  input="date +%N%M%S"
+elif [ $# = 1 ]; then
+  if [ $1 = --help ]; then
+    echo "Usage: genpwdsh [LENGTH] [METHOD] [INPUT]"
+    echo "Bash script for generating passwords."
+    echo
+    echo "Available methods for generating passwords:"
+    echo "-sha224 | -sha256 | -sha384 | -sha512 | -b2 | -random | -urandom | -openssl | -gpg"
+    exit 0
+  elif [ $1 = --version ]; then
+    echo "GenPwdSh 1.2.0"
+    echo "2020 - 2022, Ivan Kmeťo"
+    echo "CC0 1.0 Universal (CC0 1.0) Public Domain Dedication"
+    exit 0
+  else
+    method=-b2
+    input="date +%N%M%S"
+  fi
+elif [ $# = 2 ]; then
+  input="date +%N%M%S"
+fi
 
 
 if [ $length -lt 1 ]
 then
   echo 1>&2 "$0: Length must be greater than 0."
+  exit 2
 else
   if [ $method = -sha224 ]
   then
