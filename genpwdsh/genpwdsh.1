@@ -11,9 +11,10 @@ GenPwdSh \- Bash script for generating passwords.
 .B genpwdsh
 [\fI\,LENGTH\/\fR] [\fI\,METHOD\/\fR] [\fI\,INPUT\/\fR]
 .SH DESCRIPTION
+.TP
 Generate Password (in) Shell: Bash script for generating passwords, released to the public domain.
 .PP
-.SS "Use following options for more information:"
+.B "Use following options for more information:"
 .TP
 \fB\-\-help\fR
 display help message and exit
@@ -22,20 +23,26 @@ display help message and exit
 output version information and exit
 .SH METHOD
 .PP
+.BR \-b2 " "
+generates password using OpenSSL digest function with BLAKE2s-256 message digest command.
+.PP
 .BR \-sha224 " "
-generates password using sha224sum.
+generates password using OpenSSL digest function with SHA-3 224 message digest command.
 .PP
 .BR \-sha256 " "
-generates password using sha256sum.
+generates password using OpenSSL digest function with SHA-3 256 message digest command.
 .PP
 .BR \-sha384 " "
-generates password using sha384sum.
+generates password using OpenSSL digest function with SHA-3 384 message digest command.
 .PP
 .BR \-sha512 " "
-generates password using sha512sum.
+generates password using OpenSSL digest function with SHA-3 512 message digest command.
 .PP
-.BR \-b2 " "
-generates password using b2sum.
+.BR \-shake128 " "
+generates password using OpenSSL digest function with SHA-3 SHAKE128 message digest command.
+.PP
+.BR \-shake256 " "
+generates password using OpenSSL digest function with SHA-3 SHAKE256 message digest command.
 .PP
 .BR \-random " "
 generates password using /dev/random.
@@ -44,7 +51,7 @@ generates password using /dev/random.
 generates password using /dev/urandom.
 .PP
 .BR \-openssl " "
-generates password using OpenSSL.
+generates password using OpenSSL pseudo-random bytes generator.
 .PP
 .BR \-gpg " "
 generates password using GnuPG (option '--armor 2').
