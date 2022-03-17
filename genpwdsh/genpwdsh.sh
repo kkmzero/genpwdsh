@@ -7,13 +7,12 @@
 # https://creativecommons.org/publicdomain/zero/1.0/
 
 # Usage: genpwdsh [LENGTH] [METHOD] [INPUT]
-# Methods: -sha224 | -sha256 | -sha384 | -sha512 | -b2 | -shake128 | -shake256 | -random | -urandom | -openssl | -gpg
+# Methods: -b2 | -sha224 | -sha256 | -sha384 | -sha512 | -shake128 | -shake256 | -random | -urandom | -openssl | -gpg
 
 
 length=$1
 method=$2
 input=$3
-
 
 if [ $# = 0 ]; then
   length=16
@@ -25,7 +24,7 @@ elif [ $# = 1 ]; then
     echo "Bash script for generating passwords."
     echo
     echo "Available methods for generating passwords:"
-    echo "-sha224 | -sha256 | -sha384 | -sha512 | -b2 | -shake128 | -shake256 | -random | -urandom | -openssl | -gpg"
+    echo "-b2 | -sha224 | -sha256 | -sha384 | -sha512 | -shake128 | -shake256 | -random | -urandom | -openssl | -gpg"
     exit 0
   elif [ $1 = --version ]; then
     echo "GenPwdSh 1.2.0"
