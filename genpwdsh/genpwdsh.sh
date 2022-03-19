@@ -9,14 +9,13 @@
 # Usage: genpwdsh [LENGTH] [METHOD] [INPUT]
 # Methods: -b2 | -sha224 | -sha256 | -sha384 | -sha512 | -shake128 | -shake256 | -random | -urandom | -openssl | -gpg
 
-
 length=$1
 method=$2
 input=$3
 
 if [ $# = 0 ]; then
   length=16
-  method=-urandom
+  method=-openssl
   input="date +%N%M%S"
 elif [ $# = 1 ]; then
   if [ $1 = --help ]; then
@@ -32,7 +31,7 @@ elif [ $# = 1 ]; then
     echo "CC0 1.0 Universal (CC0 1.0) Public Domain Dedication"
     exit 0
   else
-    method=-urandom
+    method=-openssl
     input="date +%N%M%S"
   fi
 elif [ $# = 2 ]; then
