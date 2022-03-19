@@ -4,7 +4,7 @@
 .\" CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
 .\" https://creativecommons.org/publicdomain/zero/1.0/
 
-.TH GENPWDSH "1" "March 2022" "Version 1.2.0" "User Commands"
+.TH GENPWDSH "1" "2022-03-20" "Version 1.2.0" "User Commands"
 .SH NAME
 GenPwdSh \- Bash script for generating passwords.
 .SH SYNOPSIS
@@ -16,44 +16,52 @@ Generate Password (in) Shell: Bash script for generating passwords, released to 
 .PP
 .B "Use following options for more information:"
 .TP
-\fB\-\-help\fR
-display help message and exit
+.B \-\-help
+display help message and exit.
 .TP
-\fB\-\-version\fR
-output version information and exit
+.B \-\-version
+output version information and exit.
+.SH LENGTH
+.TP
+Set character length of generated password as integer value greater than 0. Default length is \fB16\fP.
 .SH METHOD
-.PP
-.BR \-b2 " "
+.TP
+Set preferred method of generating password. Default method is \fB-openssl\fP.
+.TP
+.B \-b2 " "
 generates password using OpenSSL digest function with BLAKE2s-256 message digest command.
-.PP
-.BR \-sha224 " "
+.TP
+.B \-sha224 " "
 generates password using OpenSSL digest function with SHA-3 224 message digest command.
-.PP
-.BR \-sha256 " "
+.TP
+.B \-sha256 " "
 generates password using OpenSSL digest function with SHA-3 256 message digest command.
-.PP
-.BR \-sha384 " "
+.TP
+.B \-sha384 " "
 generates password using OpenSSL digest function with SHA-3 384 message digest command.
-.PP
-.BR \-sha512 " "
+.TP
+.B \-sha512 " "
 generates password using OpenSSL digest function with SHA-3 512 message digest command.
-.PP
-.BR \-shake128 " "
+.TP
+.B \-shake128 " "
 generates password using OpenSSL digest function with SHA-3 SHAKE128 message digest command.
-.PP
-.BR \-shake256 " "
+.TP
+.B \-shake256 " "
 generates password using OpenSSL digest function with SHA-3 SHAKE256 message digest command.
-.PP
-.BR \-random " "
+.TP
+.B \-random " "
 generates password using /dev/random.
-.PP
-.BR \-urandom " "
+.TP
+.B \-urandom " "
 generates password using /dev/urandom.
-.PP
-.BR \-openssl " "
+.TP
+.B \-openssl " "
 generates password using OpenSSL pseudo-random bytes generator.
-.PP
-.BR \-gpg " "
+.TP
+.B \-gpg " "
 generates password using GnuPG (option '--armor 2').
+.SH INPUT
+.TP
+Set input value for generating password if available. By default, output of command \fBdate +%N%M%S\fP is used as input.
 .SH AUTHOR
 Written by Ivan Kmeťo.
