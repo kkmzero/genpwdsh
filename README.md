@@ -12,7 +12,7 @@ Use command ```make install``` to copy file *genpwdsh.sh* to */usr/local/bin/gen
 Length limit of desired password set as integer greater than 0. Default value is 16.</br>
 #### Method
 Specifies method of generating passwords:</br>
--b2 | -sha224 | -sha256 | -sha384 | -sha512 | -shake128 | -shake256 | -random | -urandom | -openssl | -gpg</br>
+-b2 | -b3 | -sha224 | -sha256 | -sha384 | -sha512 | -shake128 | -shake256 | -random | -urandom | -openssl | -gpg</br>
 Default method is *-openssl*.
 #### Input
 Specifies custom input value. By default, output of command ```date +%N%M%S``` is used as input value.
