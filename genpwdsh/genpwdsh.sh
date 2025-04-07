@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Bash script for generating passwords.
-# 2020 - 2022, Ivan Kmeťo
+# 2020 - 2025, Ivan Kmeťo
 #
 # CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
 # https://creativecommons.org/publicdomain/zero/1.0/
@@ -26,8 +26,8 @@ elif [ $# = 1 ]; then
     echo "-b2 | -sha224 | -sha256 | -sha384 | -sha512 | -shake128 | -shake256 | -random | -urandom | -openssl | -gpg"
     exit 0
   elif [ $1 = --version ]; then
-    echo "GenPwdSh 1.2.0"
-    echo "2020 - 2022, Ivan Kmeťo"
+    echo "GenPwdSh 1.3.0"
+    echo "2020 - 2025, Ivan Kmeťo"
     echo "CC0 1.0 Universal (CC0 1.0) Public Domain Dedication"
     exit 0
   else
@@ -39,9 +39,10 @@ elif [ $# = 2 ]; then
 fi
 
 
-if [ $length -lt 1 ]
+if ! [ $length -eq $length ] 2> /dev/null || [ $length -lt 1 ]
 then
-  echo 1>&2 "$0: Length must be greater than 0."
+  echo 1>&2 "$0: Length must be a number greater than 0."
+  echo "Try 'genpwdsh --help' for more information."
   exit 2
 else
   if [ $method = -sha224 ]
