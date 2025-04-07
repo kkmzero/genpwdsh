@@ -7,7 +7,7 @@
 # https://creativecommons.org/publicdomain/zero/1.0/
 
 # Usage: genpwdsh [LENGTH] [METHOD] [INPUT]
-# Methods: -b2 | -sha224 | -sha256 | -sha384 | -sha512 | -shake128 | -shake256 | -random | -urandom | -openssl | -gpg
+# Methods: -b2 | -b3 | -sha224 | -sha256 | -sha384 | -sha512 | -shake128 | -shake256 | -random | -urandom | -openssl | -gpg
 
 length=$1
 method=$2
@@ -23,7 +23,7 @@ elif [ $# = 1 ]; then
     echo "Bash script for generating passwords."
     echo
     echo "Available methods for generating passwords:"
-    echo "-b2 | -sha224 | -sha256 | -sha384 | -sha512 | -shake128 | -shake256 | -random | -urandom | -openssl | -gpg"
+    echo "-b2 | -b3 | -sha224 | -sha256 | -sha384 | -sha512 | -shake128 | -shake256 | -random | -urandom | -openssl | -gpg"
     exit 0
   elif [ $1 = --version ]; then
     echo "GenPwdSh 1.3.0"
@@ -41,7 +41,7 @@ fi
 
 if ! [ $length -eq $length ] 2> /dev/null || [ $length -lt 1 ]
 then
-  echo 1>&2 "$0: Length must be a number greater than 0."
+  echo 1>&2 "$0: Length must be integer greater than 0."
   echo "Try 'genpwdsh --help' for more information."
   exit 2
 else
@@ -78,6 +78,9 @@ else
   elif [ $method = -gpg ]
   then
     gpg --gen-random --armor 2 $length | head -c $length; echo;
+  elif [ $method = -b3 ]
+  then
+    $input | b3sum | base64 | head -c $length; echo
   else
     echo 1>&2 "$0: Unknown method."
     echo "Try 'genpwdsh --help' for more information."
