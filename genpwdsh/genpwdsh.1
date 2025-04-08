@@ -1,10 +1,10 @@
 .\" Bash script for generating passwords.
-.\" 2020 - 2022, Ivan Kmeťo
+.\" 2020 - 2025, Ivan Kmeťo
 .\"
 .\" CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
 .\" https://creativecommons.org/publicdomain/zero/1.0/
 
-.TH GENPWDSH "1" "2022-03-20" "Version 1.2.0" "User Commands"
+.TH GENPWDSH "1" "2025-04-08" "Version 1.3.0" "User Commands"
 .SH NAME
 GenPwdSh \- Bash script for generating passwords.
 .SH SYNOPSIS
@@ -30,6 +30,9 @@ Set preferred method of generating password. Default method is \fB-openssl\fP.
 .TP
 .B \-b2 " "
 generates password using OpenSSL digest function with BLAKE2s-256 message digest command.
+.TP
+.B \-b3 " "
+generates password using BLAKE3 hash function of b3sum command line tool.
 .TP
 .B \-sha224 " "
 generates password using OpenSSL digest function with SHA-3 224 message digest command.
