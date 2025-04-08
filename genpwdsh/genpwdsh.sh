@@ -39,47 +39,34 @@ elif [ $# = 2 ]; then
 fi
 
 
-if ! [ $length -eq $length ] 2> /dev/null || [ $length -lt 1 ]
-then
+if ! [ $length -eq $length ] 2> /dev/null || [ $length -lt 1 ]; then
   echo 1>&2 "$0: Length must be integer greater than 0."
   echo "Try 'genpwdsh --help' for more information."
   exit 2
 else
-  if [ $method = -sha224 ]
-  then
+  if [ $method = -sha224 ]; then
     $input | openssl dgst -sha3-224 -r | base64 | head -c $length; echo
-  elif [ $method = -sha256 ]
-  then
+  elif [ $method = -sha256 ]; then
     $input | openssl dgst -sha3-256 -r | base64 | head -c $length; echo
-  elif [ $method = -sha384 ]
-  then
+  elif [ $method = -sha384 ]; then
     $input | openssl dgst -sha3-384 -r | base64 | head -c $length; echo
-  elif [ $method = -sha512 ]
-  then
+  elif [ $method = -sha512 ]; then
     $input | openssl dgst -sha3-512 -r | base64 | head -c $length; echo
-  elif [ $method = -b2 ]
-  then
+  elif [ $method = -b2 ]; then
     $input | openssl dgst -blake2b512 -r | base64 | head -c $length; echo
-  elif [ $method = -shake128 ]
-  then
+  elif [ $method = -shake128 ]; then
     $input | openssl dgst -shake128 -r | base64 | head -c $length; echo
-  elif [ $method = -shake256 ]
-  then
+  elif [ $method = -shake256 ]; then
     $input | openssl dgst -shake256 -r | base64 | head -c $length; echo
-  elif [ $method = -random ]
-  then
+  elif [ $method = -random ]; then
     < /dev/random tr -dc 'A-Za-z0-9!"#$%&'\''()*+,-./:;<=>?@[\]^_`{|}~' | head -c${1:-$length}; echo;
-  elif [ $method = -urandom ]
-  then
+  elif [ $method = -urandom ]; then
     < /dev/urandom tr -dc 'A-Za-z0-9!"#$%&'\''()*+,-./:;<=>?@[\]^_`{|}~' | head -c${1:-$length}; echo;
-  elif [ $method = -openssl ]
-  then
+  elif [ $method = -openssl ]; then
     openssl rand -base64 $length | head -c $length; echo;
-  elif [ $method = -gpg ]
-  then
+  elif [ $method = -gpg ]; then
     gpg --gen-random --armor 2 $length | head -c $length; echo;
-  elif [ $method = -b3 ]
-  then
+  elif [ $method = -b3 ]; then
     $input | b3sum | base64 | head -c $length; echo
   else
     echo 1>&2 "$0: Unknown method."
